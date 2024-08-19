@@ -33,11 +33,12 @@
   },
   "keywords": [],
   "author": {
-    "name": "Buddhi Kavindra",
-    "email": "visitbudkavin@gmail.com"
+    "name": "Buddhi Kavindra"
   },
   "license": "MIT",
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.1"
+    "bootstrap": "^5.3.3",
+    "electron-squirrel-startup": "^1.0.1",
+    "systeminformation": "^5.23.4"
   }
 }

@@ -1,2 +1,8 @@
-// See the Electron documentation for details on how to use preload scripts:
-// https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
+import { cpu } from "systeminformation";
+
+cpu()
+    .then(data => {
+        const element = document.querySelector('#element');
+        element.innerHTML = data.brand;
+    })
+    .catch(error => console.error(error));
