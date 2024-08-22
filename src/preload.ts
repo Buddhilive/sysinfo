@@ -1,22 +1,31 @@
-import { system } from "systeminformation";
+class BuddhiliveSysinfoUI {
+
+  private listItems = ['General', 'System'];
+
+  createWindow() {
+    const listView: HTMLUListElement = document.querySelector('#app-navbar');
+
+    this.listItems.forEach((item: string) => {
+      const listElement = document.createElement('li');
+      listElement.classList.add('nav-item');
+      const anchorElement = document.createElement('a');
+      anchorElement.classList.add('nav-link');
+      anchorElement.innerHTML = item;
+      anchorElement.addEventListener('click', (evt: MouseEvent) => this.onNavSelected(evt));
+      listElement.append(anchorElement);
+      listView.append(listElement);
+    });
+  }
+
+  onNavSelected(evt: MouseEvent) {
+    const selectedNav = (evt.target as HTMLAnchorElement);
+    const listItems = document.querySelectorAll('#app-navbar .nav-item .nav-link');
+    listItems.forEach(item => item.classList.remove('active'));
+    selectedNav.classList.add('active');
+  }
+}
 
 window.onload = () => {
-    createWindow();
+  new BuddhiliveSysinfoUI().createWindow();
 };
-
-function createWindow() {
-    const appRoot: HTMLDivElement = document.querySelector("#app-root");
-    
-    system()
-      .then((data) => {
-        const listView = document.createElement("ul");
-        for (const [key, value] of Object.entries(data)) {
-          const li = document.createElement("li");
-          li.innerHTML = `<span class="sysinfo__list-item__label">${key}</span>: ${value}`;
-          listView.appendChild(li);
-        }
-        appRoot.appendChild(listView);
-      })
-      .catch((error) => console.error(error));
-}
 

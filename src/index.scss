@@ -5,6 +5,12 @@ html, body {
   padding: 0;
 }
 
+.navbar-collapse {
+  .nav-link {
+    cursor: pointer;
+  }
+}
+
 .sysinfo {
   &__list-item {
     &__label {
