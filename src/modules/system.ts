@@ -1,4 +1,5 @@
 import { system } from "systeminformation";
+import { SysInfoTemplateGenerator } from "./template-generator";
 
 export class SystemGeneralInformation {
     constructor(private appRoot: HTMLDivElement) { }
@@ -6,13 +7,9 @@ export class SystemGeneralInformation {
     loadUI() {
         system()
             .then((data) => {
-                const listView = document.createElement("ul");
-                for (const [key, value] of Object.entries(data)) {
-                    const li = document.createElement("li");
-                    li.innerHTML = `<span class="sysinfo__list-item__label">${key}</span>: ${value}`;
-                    listView.appendChild(li);
-                }
-                this.appRoot.appendChild(listView);
+                const templateGen = new SysInfoTemplateGenerator();
+                const tableView = templateGen.createBasicTable(data);
+                this.appRoot.appendChild(tableView);
             })
             .catch((error) => console.error(error));
     }
