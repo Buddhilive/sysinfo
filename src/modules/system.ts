@@ -1,4 +1,4 @@
-import { system, bios, baseboard } from "systeminformation";
+import { system, bios, baseboard, chassis } from "systeminformation";
 import { SysInfoTemplateGenerator } from "./template-generator";
 
 export class SystemGeneralInformation {
@@ -23,6 +23,13 @@ export class SystemGeneralInformation {
         baseboard().then((data) => {
             const templateGen = new SysInfoTemplateGenerator();
             const tableView = templateGen.createBasicTable(data, 'Baseboard Information');
+            this.appRoot.appendChild(tableView);
+        }).catch((error) => console.error(error));
+
+        // Chasis Information
+        chassis().then((data) => {
+            const templateGen = new SysInfoTemplateGenerator();
+            const tableView = templateGen.createBasicTable(data, 'Chasis Information');
             this.appRoot.appendChild(tableView);
         }).catch((error) => console.error(error));
     }
