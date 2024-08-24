@@ -1,7 +1,14 @@
 export class SysInfoTemplateGenerator {
-    createBasicTable(data: object): HTMLTableElement {
+    createBasicTable(data: object, title?: string): HTMLTableElement {
         const tableView = document.createElement("table");
-        tableView.classList.add('table');
+        tableView.classList.add('table', 'mb-5');
+
+        if (title && title != '') {
+            const tableTitleTemplate = `<thead>
+        <tr><td colspan="2"><h3>${title}</h3></td></thead>`;
+            tableView.innerHTML = tableTitleTemplate;
+        }
+
         const tbody = document.createElement("tbody");
         for (const [key, value] of Object.entries(data)) {
             const tr = document.createElement("tr");

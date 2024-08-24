@@ -8,7 +8,7 @@ export class SystemGeneralInformation {
         system()
             .then((data) => {
                 const templateGen = new SysInfoTemplateGenerator();
-                const tableView = templateGen.createBasicTable(data);
+                const tableView = templateGen.createBasicTable(data, 'System Information');
                 this.appRoot.appendChild(tableView);
             })
             .catch((error) => console.error(error));
