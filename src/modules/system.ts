@@ -5,6 +5,7 @@ export class SystemGeneralInformation {
     constructor(private appRoot: HTMLDivElement) { }
 
     loadUI() {
+        this.appRoot.innerHTML = '';
         // System Information
         system().then((data) => {
             const templateGen = new SysInfoTemplateGenerator();

@@ -1,11 +1,13 @@
+import { CPUInformation } from "./modules/cpu-info";
 import { SystemGeneralInformation } from "./modules/system";
 
 class BuddhiliveSysinfoUI {
 
-  private listItems = ['General', 'System'];
+  private listItems = ['General', 'CPU'];
   private appRoot: HTMLDivElement = document.querySelector('#app-root');
 
   private systemUI = new SystemGeneralInformation(this.appRoot);
+  private cpuInfoUI = new CPUInformation(this.appRoot);
 
   createWindow() {
     const listView: HTMLUListElement = document.querySelector('#app-navbar');
@@ -36,6 +38,10 @@ class BuddhiliveSysinfoUI {
     switch (activeView) {
       case 'general':
         this.systemUI.loadUI();
+        break;
+      
+      case 'cpu':
+        this.cpuInfoUI.loadUI();
         break;
     
       default:
