@@ -1,13 +1,15 @@
 import { CPUInformation } from "./modules/cpu-info";
+import { MemoryInformation } from "./modules/memory-info";
 import { SystemGeneralInformation } from "./modules/system";
 
 class BuddhiliveSysinfoUI {
 
-  private listItems = ['General', 'CPU'];
+  private listItems = ['General', 'CPU', 'Memory'];
   private appRoot: HTMLDivElement = document.querySelector('#app-root');
 
   private systemUI = new SystemGeneralInformation(this.appRoot);
   private cpuInfoUI = new CPUInformation(this.appRoot);
+  private memInfoUI = new MemoryInformation(this.appRoot);
 
   createWindow() {
     const listView: HTMLUListElement = document.querySelector('#app-navbar');
@@ -42,6 +44,10 @@ class BuddhiliveSysinfoUI {
       
       case 'cpu':
         this.cpuInfoUI.loadUI();
+        break;
+
+      case 'memory':
+        this.memInfoUI.loadUI();
         break;
     
       default:
