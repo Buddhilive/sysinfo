@@ -1,15 +1,15 @@
-import { mem } from "systeminformation";
+import { battery } from "systeminformation";
 import { SysInfoTemplateGenerator } from "./template-generator";
 
-export class MemoryInformation {
+export class BatteryInformation {
     constructor(private appRoot: HTMLDivElement) { }
 
     loadUI() {
         this.appRoot.innerHTML = '';
-        // Memory Information
-        mem().then((data) => {
+        // Battery Information
+        battery().then((data) => {
             const templateGen = new SysInfoTemplateGenerator();
-            const tableView = templateGen.createBasicTable(data, 'Memory Information');
+            const tableView = templateGen.createBasicTable(data, 'Battery Information');
             this.appRoot.appendChild(tableView);
         }).catch((error) => console.error(error));
     }
