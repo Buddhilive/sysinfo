@@ -9,8 +9,10 @@ export class GraphicsInformation {
         // Graphics Information
         graphics().then((data: any) => {
             const templateGen = new SysInfoTemplateGenerator();
-            const tableView = templateGen.createBasicTable(data.controllers[0], 'Graphics Information');
-            this.appRoot.appendChild(tableView);
+            const tableViewControllers = templateGen.createBasicTable(data.controllers[0], 'Graphics Controller Information');
+            this.appRoot.appendChild(tableViewControllers);
+            const tableViewDisplays = templateGen.createBasicTable(data.displays[0], 'Graphics Displays Information');
+            this.appRoot.appendChild(tableViewDisplays);
         }).catch((error) => console.error(error));
     }
 }
