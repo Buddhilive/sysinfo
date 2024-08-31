@@ -19,4 +19,15 @@ export class SysInfoTemplateGenerator {
         tableView.appendChild(tbody);
         return tableView;
     }
+
+    createBasicTableFromArray(data: Array<object>, title?: string): Promise<HTMLDivElement> {
+        return new Promise((resolve, reject) => {
+            const tableCollection = document.createElement('div');
+            for (const item of data) {
+                const tableView = this.createBasicTable(item, title);
+                tableCollection.appendChild(tableView);
+            }
+            resolve(tableCollection);
+        });
+    }
 }
