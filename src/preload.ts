@@ -2,11 +2,12 @@ import { BatteryInformation } from "./modules/battery-info";
 import { CPUInformation } from "./modules/cpu-info";
 import { GraphicsInformation } from "./modules/graphics-info";
 import { MemoryInformation } from "./modules/memory-info";
+import { OSInformation } from "./modules/os-info";
 import { SystemGeneralInformation } from "./modules/system";
 
 class BuddhiliveSysinfoUI {
 
-  private listItems = ['General', 'CPU', 'Memory', 'Battery', 'Graphics'];
+  private listItems = ['General', 'CPU', 'Memory', 'Battery', 'Graphics', 'OS'];
   private appRoot: HTMLDivElement = document.querySelector('#app-root');
 
   private systemUI = new SystemGeneralInformation(this.appRoot);
@@ -14,6 +15,7 @@ class BuddhiliveSysinfoUI {
   private memInfoUI = new MemoryInformation(this.appRoot);
   private batteryInfoUI = new BatteryInformation(this.appRoot);
   private graphicsInfoUI = new GraphicsInformation(this.appRoot);
+  private osInfoUI = new OSInformation(this.appRoot);
 
   createWindow() {
     const listView: HTMLUListElement = document.querySelector('#app-navbar');
@@ -60,6 +62,10 @@ class BuddhiliveSysinfoUI {
 
       case 'graphics':
         this.graphicsInfoUI.loadUI();
+        break;
+
+      case 'os':
+        this.osInfoUI.loadUI();
         break;
     
       default:
