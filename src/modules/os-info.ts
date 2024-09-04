@@ -1,4 +1,4 @@
-import { osInfo } from "systeminformation";
+import { osInfo, versions } from "systeminformation";
 import { SysInfoTemplateGenerator } from "./template-generator";
 
 export class OSInformation {
@@ -6,10 +6,17 @@ export class OSInformation {
 
     loadUI() {
         this.appRoot.innerHTML = '';
-        // Battery Information
+        // OS Information
         osInfo().then((data) => {
             const templateGen = new SysInfoTemplateGenerator();
             const tableView = templateGen.createBasicTable(data, 'Operating System Information');
+            this.appRoot.appendChild(tableView);
+        }).catch((error) => console.error(error));
+
+        // Software Version Information
+        versions().then((data) => {
+            const templateGen = new SysInfoTemplateGenerator();
+            const tableView = templateGen.createBasicTable(data, 'Software Version Information');
             this.appRoot.appendChild(tableView);
         }).catch((error) => console.error(error));
     }
